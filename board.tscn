@@ -8,7 +8,8 @@ script = ExtResource("1_mf1gx")
 
 [node name="GridOrigin" type="Node2D" parent="."]
 
-[node name="Snake" parent="GridOrigin" instance=ExtResource("2_u58s0")]
+[node name="Snake" parent="GridOrigin" node_paths=PackedStringArray("board") instance=ExtResource("2_u58s0")]
+board = NodePath("../..")
 
 [node name="Border" type="Line2D" parent="."]
 closed = true

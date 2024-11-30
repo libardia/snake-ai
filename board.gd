@@ -1,15 +1,12 @@
+class_name Board
 extends Node2D
 
 
-@export
-var grid_size: Vector2i = Vector2(28, 16)
-@export
-var camera: Camera2D
+@export var grid_size: Vector2i = Vector2(28, 16)
+@export var camera: Camera2D
 
-@onready
-var border: Line2D = $Border
-@onready
-var grid_origin_node: Node2D = $GridOrigin
+@onready var border: Line2D = $Border
+@onready var grid_origin_node: Node2D = $GridOrigin
 
 var board_origin: Vector2
 var grid_origin: Vector2
@@ -50,6 +47,3 @@ func _ready() -> void:
 		)
 	]
 
-
-func _process(delta: float) -> void:
-	pass
