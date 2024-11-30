@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://boobg3k83n77o"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_uc5lc"]
+[ext_resource type="PackedScene" uid="uid://ubg8y2mvppom" path="res://board.tscn" id="2_rj4k5"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_uc5lc")
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(576, 324)
+
+[node name="Board" parent="." instance=ExtResource("2_rj4k5")]
