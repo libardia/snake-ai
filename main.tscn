@@ -7,7 +7,8 @@
 script = ExtResource("1_uc5lc")
 
 [node name="Camera" type="Camera2D" parent="."]
-unique_name_in_owner = true
 position = Vector2(576, 324)
 
-[node name="Board" parent="." instance=ExtResource("2_rj4k5")]
+[node name="Board" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_rj4k5")]
+grid_size = Vector2i(20, 10)
+camera = NodePath("../Camera")

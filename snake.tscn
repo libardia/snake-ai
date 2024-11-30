@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwqayl36wdgl1"]
+
+[ext_resource type="Texture2D" uid="uid://uu1eehvhkhnk" path="res://img/head_up.png" id="1_w7cso"]
+
+[node name="Snake" type="Node2D"]
+
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("1_w7cso")
+centered = false

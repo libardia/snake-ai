@@ -3,12 +3,15 @@ extends Node2D
 
 @export
 var grid_size: Vector2i = Vector2(28, 16)
+@export
+var camera: Camera2D
 
 @onready
 var border: Line2D = $Border
 @onready
-var camera: Camera2D = %Camera
+var grid_origin_node: Node2D = $GridOrigin
 
+var board_origin: Vector2
 var grid_origin: Vector2
 var board_size: Vector2
 
@@ -26,21 +29,24 @@ func _ready() -> void:
 		camera.zoom = Vector2.ONE * cam_zoom
 	
 	# Calculate where the grid should start
-	grid_origin = (vp_size - board_size) / 2
-
-	# Border points
 	var half_width = border.width / 2
 	var half_width_v = Vector2.ONE * half_width
+	board_origin = (vp_size - board_size) / 2
+	position = board_origin
+	grid_origin = half_width_v
+	grid_origin_node.position = grid_origin
+
+	# Set border points
 	border.points = [
-		grid_origin + half_width_v,
+		half_width_v,
 		Vector2(
-			grid_origin.x + board_size.x - half_width,
-			grid_origin.y + half_width
+			board_size.x - half_width,
+			half_width
 		),
-		grid_origin + board_size - half_width_v,
+		board_size - half_width_v,
 		Vector2(
-			grid_origin.x + half_width,
-			grid_origin.y + board_size.y - half_width
+			half_width,
+			board_size.y - half_width
 		)
 	]
 
