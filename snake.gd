@@ -4,7 +4,7 @@ extends Node2D
 @export var board: Board
 
 @onready var move_timer: Timer = $MoveTimer
-@onready var tilemap: TileMapLayer = $SnakeTiles
+@onready var snake_tiles: TileMapLayer = $SnakeTiles
 
 const TILESET_ID: int = 5
 
@@ -28,7 +28,7 @@ const BODY_BR = Vector2i(1, 3)
 
 
 func _ready() -> void:
-	tilemap.set_cell(Vector2i(0, 0), TILESET_ID, HEAD_UP)
+	snake_tiles.set_cell(Vector2i(0, 0), TILESET_ID, HEAD_UP)
 
 
 func _on_move_timer_timeout() -> void:
