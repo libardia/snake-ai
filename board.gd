@@ -42,5 +42,3 @@ func _ready() -> void:
 		Vector2(half_width, board_size.y - half_width)
 	]
 
-	# Randomly place snake and apple
-

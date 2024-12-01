@@ -1,46 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://boobg3k83n77o"]
+[gd_scene load_steps=18 format=3 uid="uid://boobg3k83n77o"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_uc5lc"]
 [ext_resource type="Script" path="res://board.gd" id="2_0iudr"]
-[ext_resource type="Texture2D" uid="uid://dhhod4t6fb0bl" path="res://img/snake_sheet.png" id="2_w1x31"]
 [ext_resource type="Script" path="res://snake.gd" id="3_afdoo"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oiofq"]
-texture = ExtResource("2_w1x31")
-texture_region_size = Vector2i(40, 40)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
-
-[sub_resource type="TileSet" id="TileSet_acfh6"]
-tile_size = Vector2i(40, 40)
-physics_layer_0/collision_layer = 1
-sources/5 = SubResource("TileSetAtlasSource_oiofq")
+[ext_resource type="Texture2D" uid="uid://57id5ss3erd" path="res://img/head_up.png" id="4_1iw6v"]
+[ext_resource type="Texture2D" uid="uid://bmdwlmukss2i4" path="res://img/head_down.png" id="5_bkt5l"]
+[ext_resource type="Texture2D" uid="uid://cq6hc2wqoejx5" path="res://img/head_left.png" id="6_qrwpv"]
+[ext_resource type="Texture2D" uid="uid://y76ve51ar5dd" path="res://img/head_right.png" id="7_rtacm"]
+[ext_resource type="Texture2D" uid="uid://4h1qx2ul5035" path="res://img/tail_up.png" id="8_534xu"]
+[ext_resource type="Texture2D" uid="uid://q38nu0bqfti2" path="res://img/tail_down.png" id="9_o7gdu"]
+[ext_resource type="Texture2D" uid="uid://blhr1osu6nu7w" path="res://img/tail_left.png" id="10_to6j7"]
+[ext_resource type="Texture2D" uid="uid://cufm8lehtkpp8" path="res://img/tail_right.png" id="11_d2dbv"]
+[ext_resource type="Texture2D" uid="uid://c52ab3ogpqfyi" path="res://img/body_horizontal.png" id="12_qoiss"]
+[ext_resource type="Texture2D" uid="uid://byygdhc6hx78j" path="res://img/body_vertical.png" id="13_c00de"]
+[ext_resource type="Texture2D" uid="uid://cehc1yfmhy4hr" path="res://img/body_topleft.png" id="14_vsce5"]
+[ext_resource type="Texture2D" uid="uid://h5xrhea5wobl" path="res://img/body_topright.png" id="15_nlljp"]
+[ext_resource type="Texture2D" uid="uid://dofdsgvfx0p4a" path="res://img/body_bottomleft.png" id="16_7pssc"]
+[ext_resource type="Texture2D" uid="uid://cr7isamb132yi" path="res://img/body_bottomright.png" id="17_6w3yr"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_uc5lc")
@@ -60,9 +36,24 @@ width = 5.0
 [node name="Snake" type="Node2D" parent="Board/GridOrigin" node_paths=PackedStringArray("board")]
 script = ExtResource("3_afdoo")
 board = NodePath("../..")
+head_up = ExtResource("4_1iw6v")
+head_down = ExtResource("5_bkt5l")
+head_left = ExtResource("6_qrwpv")
+head_right = ExtResource("7_rtacm")
+tail_up = ExtResource("8_534xu")
+tail_down = ExtResource("9_o7gdu")
+tail_left = ExtResource("10_to6j7")
+tail_right = ExtResource("11_d2dbv")
+body_horizontal = ExtResource("12_qoiss")
+body_vertical = ExtResource("13_c00de")
+body_tl = ExtResource("14_vsce5")
+body_tr = ExtResource("15_nlljp")
+body_bl = ExtResource("16_7pssc")
+body_br = ExtResource("17_6w3yr")
 
-[node name="SnakeTiles" type="TileMapLayer" parent="Board/GridOrigin/Snake"]
-tile_set = SubResource("TileSet_acfh6")
+[node name="Head" type="Sprite2D" parent="Board/GridOrigin/Snake"]
+
+[node name="Tail" type="Sprite2D" parent="Board/GridOrigin/Snake"]
 
 [node name="MoveTimer" type="Timer" parent="Board/GridOrigin/Snake"]
 wait_time = 0.5

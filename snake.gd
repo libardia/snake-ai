@@ -29,16 +29,35 @@ const BODY_TR = Vector2i(3, 2)
 const BODY_BL = Vector2i(0, 3)
 const BODY_BR = Vector2i(1, 3)
 
+@export_group('Dependencies')
 @export var board: Board
 
-@onready var move_timer: Timer = $MoveTimer
-@onready var snake_tiles: TileMapLayer = $SnakeTiles
+@export_group('Textures')
+@export_subgroup('Head')
+@export var head_up: Texture2D
+@export var head_down: Texture2D
+@export var head_left: Texture2D
+@export var head_right: Texture2D
+@export_subgroup('Tail')
+@export var tail_up: Texture2D
+@export var tail_down: Texture2D
+@export var tail_left: Texture2D
+@export var tail_right: Texture2D
+@export_subgroup('Body Straight')
+@export var body_horizontal: Texture2D
+@export var body_vertical: Texture2D
+@export_subgroup('Body Bent')
+@export var body_tl: Texture2D
+@export var body_tr: Texture2D
+@export var body_bl: Texture2D
+@export var body_br: Texture2D
 
+@onready var move_timer: Timer = $MoveTimer
+@onready var head: Sprite2D = $Head
+@onready var tail: Sprite2D = $Tail
 
 var curr_direction: Direction = Direction.RIGHT
 var length: int = 0
-var head: Segment = Segment.new()
-var tail: Segment = Segment.new()
 var segments: Array[Segment] = []
 
 func _ready() -> void:
