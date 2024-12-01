@@ -48,10 +48,12 @@ script = ExtResource("1_uc5lc")
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 
-[node name="Board" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+[node name="Board" type="Node2D" parent="."]
 script = ExtResource("2_0iudr")
-grid_size = Vector2i(10, 10)
-camera = NodePath("../Camera")
+
+[node name="Border" type="Line2D" parent="Board"]
+closed = true
+width = 5.0
 
 [node name="GridOrigin" type="Node2D" parent="Board"]
 
@@ -65,7 +67,3 @@ tile_set = SubResource("TileSet_acfh6")
 [node name="MoveTimer" type="Timer" parent="Board/GridOrigin/Snake"]
 wait_time = 0.5
 autostart = true
-
-[node name="Border" type="Line2D" parent="Board"]
-closed = true
-width = 5.0

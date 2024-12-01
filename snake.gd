@@ -1,10 +1,13 @@
+class_name Snake
 extends Node2D
 
 
-@export var board: Board
+enum Direction { UP, DOWN, LEFT, RIGHT }
 
-@onready var move_timer: Timer = $MoveTimer
-@onready var snake_tiles: TileMapLayer = $SnakeTiles
+class Segment:
+	var pos: Vector2i
+	var dir: Direction
+
 
 const TILESET_ID: int = 5
 
@@ -26,9 +29,20 @@ const BODY_TR = Vector2i(3, 2)
 const BODY_BL = Vector2i(0, 3)
 const BODY_BR = Vector2i(1, 3)
 
+@export var board: Board
+
+@onready var move_timer: Timer = $MoveTimer
+@onready var snake_tiles: TileMapLayer = $SnakeTiles
+
+
+var curr_direction: Direction = Direction.RIGHT
+var length: int = 0
+var head: Segment = Segment.new()
+var tail: Segment = Segment.new()
+var segments: Array[Segment] = []
 
 func _ready() -> void:
-	snake_tiles.set_cell(Vector2i(0, 0), TILESET_ID, HEAD_UP)
+	pass
 
 
 func _on_move_timer_timeout() -> void:
