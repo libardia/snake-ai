@@ -45,16 +45,16 @@ head_up = ExtResource("4_1iw6v")
 head_down = ExtResource("5_bkt5l")
 head_left = ExtResource("6_qrwpv")
 head_right = ExtResource("7_rtacm")
-tail_up = ExtResource("8_534xu")
-tail_down = ExtResource("9_o7gdu")
-tail_left = ExtResource("10_to6j7")
-tail_right = ExtResource("11_d2dbv")
+tail_up = ExtResource("9_o7gdu")
+tail_down = ExtResource("8_534xu")
+tail_left = ExtResource("11_d2dbv")
+tail_right = ExtResource("10_to6j7")
 body_horizontal = ExtResource("12_qoiss")
 body_vertical = ExtResource("13_c00de")
-body_tl = ExtResource("14_vsce5")
-body_tr = ExtResource("15_nlljp")
-body_bl = ExtResource("16_7pssc")
-body_br = ExtResource("17_6w3yr")
+body_ul = ExtResource("14_vsce5")
+body_ur = ExtResource("15_nlljp")
+body_dl = ExtResource("16_7pssc")
+body_dr = ExtResource("17_6w3yr")
 
 [node name="Head" type="Sprite2D" parent="Board/GridOrigin/Snake"]
 centered = false
@@ -65,3 +65,5 @@ centered = false
 [node name="MoveTimer" type="Timer" parent="Board/GridOrigin/Snake"]
 wait_time = 0.5
 autostart = true
+
+[connection signal="timeout" from="Board/GridOrigin/Snake/MoveTimer" to="Board/GridOrigin/Snake" method="move"]

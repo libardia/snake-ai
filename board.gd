@@ -13,19 +13,20 @@ extends Node2D
 var board_origin: Vector2
 var grid_origin: Vector2
 var board_size: Vector2
+var apple_grid_pos: Vector2i
 
 
 func _ready() -> void:
 	# Get the total size of the whole grid and border
 	board_size = (Vector2.ONE * border.width * 2) + (Vector2(grid_size) * snake.texture_size)
-	
+
 	# Zoom out the camera if necessary
 	var vp_size = get_viewport_rect().size
 	var size_ratio = vp_size / board_size
 	var cam_zoom = min(size_ratio.x, size_ratio.y)
 	if cam_zoom < 1:
 		camera.zoom = Vector2.ONE * cam_zoom
-	
+
 	# Calculate where the grid should start
 	board_origin = (vp_size - board_size) / 2
 	position = board_origin
@@ -61,5 +62,5 @@ func place_apple() -> void:
 			if apple_pos == seg.pos:
 				generate = true
 				continue
-		
-	apple.position = Vector2(apple_pos) * snake.texture_size
+	apple_grid_pos = apple_pos
+	apple.position = Vector2(apple_grid_pos) * snake.texture_size
