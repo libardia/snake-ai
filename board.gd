@@ -8,6 +8,7 @@ extends Node2D
 @onready var border: Line2D = $Border
 @onready var grid_origin_node: Node2D = $GridOrigin
 @onready var snake: Snake = $GridOrigin/Snake
+@onready var apple: Sprite2D = $GridOrigin/Apple
 
 var board_origin: Vector2
 var grid_origin: Vector2
@@ -16,8 +17,7 @@ var board_size: Vector2
 
 func _ready() -> void:
 	# Get the total size of the whole grid and border
-	var texsize = 40
-	board_size = (Vector2.ONE * border.width * 2) + (Vector2(grid_size) * texsize)
+	board_size = (Vector2.ONE * border.width * 2) + (Vector2(grid_size) * snake.texture_size)
 	
 	# Zoom out the camera if necessary
 	var vp_size = get_viewport_rect().size
@@ -42,3 +42,24 @@ func _ready() -> void:
 		Vector2(half_width, board_size.y - half_width)
 	]
 
+	place_apple()
+
+
+func place_apple() -> void:
+	var apple_pos: Vector2i = Vector2i.ZERO
+	var generate = true
+	while generate:
+		print('Attempting apple spawn')
+		generate = false
+		apple_pos.x = randi() % grid_size.x
+		apple_pos.y = randi() % grid_size.y
+		# Generate again if the randomly chosen position is on the snake
+		if apple_pos == snake.head.pos or apple_pos == snake.tail.pos:
+			generate = true
+			continue
+		for seg in snake.body_segments:
+			if apple_pos == seg.pos:
+				generate = true
+				continue
+		
+	apple.position = Vector2(apple_pos) * snake.texture_size

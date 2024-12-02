@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://boobg3k83n77o"]
+[gd_scene load_steps=19 format=3 uid="uid://boobg3k83n77o"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_uc5lc"]
 [ext_resource type="Script" path="res://board.gd" id="2_0iudr"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://h5xrhea5wobl" path="res://img/body_topright.png" id="15_nlljp"]
 [ext_resource type="Texture2D" uid="uid://dofdsgvfx0p4a" path="res://img/body_bottomleft.png" id="16_7pssc"]
 [ext_resource type="Texture2D" uid="uid://cr7isamb132yi" path="res://img/body_bottomright.png" id="17_6w3yr"]
+[ext_resource type="Texture2D" uid="uid://dd3y743eism2w" path="res://img/apple.png" id="18_4r17e"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_uc5lc")
@@ -32,6 +33,10 @@ closed = true
 width = 5.0
 
 [node name="GridOrigin" type="Node2D" parent="Board"]
+
+[node name="Apple" type="Sprite2D" parent="Board/GridOrigin"]
+texture = ExtResource("18_4r17e")
+centered = false
 
 [node name="Snake" type="Node2D" parent="Board/GridOrigin" node_paths=PackedStringArray("board")]
 script = ExtResource("3_afdoo")
@@ -52,8 +57,10 @@ body_bl = ExtResource("16_7pssc")
 body_br = ExtResource("17_6w3yr")
 
 [node name="Head" type="Sprite2D" parent="Board/GridOrigin/Snake"]
+centered = false
 
 [node name="Tail" type="Sprite2D" parent="Board/GridOrigin/Snake"]
+centered = false
 
 [node name="MoveTimer" type="Timer" parent="Board/GridOrigin/Snake"]
 wait_time = 0.5
