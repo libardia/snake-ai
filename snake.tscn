@@ -1,0 +1,46 @@
+[gd_scene load_steps=16 format=3 uid="uid://yy7judbcsrua"]
+
+[ext_resource type="Script" path="res://snake.gd" id="1_7asjb"]
+[ext_resource type="Texture2D" uid="uid://57id5ss3erd" path="res://img/head_up.png" id="2_m2cy6"]
+[ext_resource type="Texture2D" uid="uid://bmdwlmukss2i4" path="res://img/head_down.png" id="3_0v2jf"]
+[ext_resource type="Texture2D" uid="uid://cq6hc2wqoejx5" path="res://img/head_left.png" id="4_l1aaq"]
+[ext_resource type="Texture2D" uid="uid://y76ve51ar5dd" path="res://img/head_right.png" id="5_xaq6a"]
+[ext_resource type="Texture2D" uid="uid://q38nu0bqfti2" path="res://img/tail_down.png" id="6_1jmfo"]
+[ext_resource type="Texture2D" uid="uid://4h1qx2ul5035" path="res://img/tail_up.png" id="7_m3qqo"]
+[ext_resource type="Texture2D" uid="uid://cufm8lehtkpp8" path="res://img/tail_right.png" id="8_6fjh8"]
+[ext_resource type="Texture2D" uid="uid://blhr1osu6nu7w" path="res://img/tail_left.png" id="9_o47ex"]
+[ext_resource type="Texture2D" uid="uid://c52ab3ogpqfyi" path="res://img/body_horizontal.png" id="10_efn7b"]
+[ext_resource type="Texture2D" uid="uid://byygdhc6hx78j" path="res://img/body_vertical.png" id="11_gafap"]
+[ext_resource type="Texture2D" uid="uid://cehc1yfmhy4hr" path="res://img/body_topleft.png" id="12_q25ia"]
+[ext_resource type="Texture2D" uid="uid://h5xrhea5wobl" path="res://img/body_topright.png" id="13_wa3w4"]
+[ext_resource type="Texture2D" uid="uid://dofdsgvfx0p4a" path="res://img/body_bottomleft.png" id="14_6awcp"]
+[ext_resource type="Texture2D" uid="uid://cr7isamb132yi" path="res://img/body_bottomright.png" id="15_06ofn"]
+
+[node name="Snake" type="Node2D"]
+script = ExtResource("1_7asjb")
+head_up = ExtResource("2_m2cy6")
+head_down = ExtResource("3_0v2jf")
+head_left = ExtResource("4_l1aaq")
+head_right = ExtResource("5_xaq6a")
+tail_up = ExtResource("6_1jmfo")
+tail_down = ExtResource("7_m3qqo")
+tail_left = ExtResource("8_6fjh8")
+tail_right = ExtResource("9_o47ex")
+body_horizontal = ExtResource("10_efn7b")
+body_vertical = ExtResource("11_gafap")
+body_ul = ExtResource("12_q25ia")
+body_ur = ExtResource("13_wa3w4")
+body_dl = ExtResource("14_6awcp")
+body_dr = ExtResource("15_06ofn")
+
+[node name="Head" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Tail" type="Sprite2D" parent="."]
+centered = false
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="move"]

@@ -53,7 +53,6 @@ func place_apple() -> void:
 	var apple_pos: Vector2i = Vector2i.ZERO
 	var generate = true
 	while generate:
-		print('Attempting apple spawn')
 		generate = false
 		apple_pos.x = randi() % grid_size.x
 		apple_pos.y = randi() % grid_size.y
@@ -65,6 +64,5 @@ func place_apple() -> void:
 			if apple_pos == seg.pos:
 				generate = true
 				continue
-	print('Successfully placed apple')
 	apple_grid_pos = apple_pos
 	apple.position = Vector2(apple_grid_pos) * snake.texture_size
