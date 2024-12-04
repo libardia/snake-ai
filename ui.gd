@@ -9,3 +9,8 @@ func _lose() -> void:
 	visible = true
 	button.grab_focus()
 	game_result.text = 'Game Over'
+
+func _win() -> void:
+	visible = true
+	button.grab_focus()
+	game_result.text = 'You Win'

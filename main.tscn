@@ -55,4 +55,5 @@ theme_override_font_sizes/font_size = 30
 text = "Restart"
 script = ExtResource("5_4qwik")
 
-[connection signal="dead" from="Board/GridOrigin/Snake" to="UI" method="_lose"]
+[connection signal="game_lost" from="Board/GridOrigin/Snake" to="UI" method="_lose"]
+[connection signal="game_won" from="Board/GridOrigin/Snake" to="UI" method="_win"]

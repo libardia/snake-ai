@@ -52,10 +52,11 @@ var length: int = 2
 var body_segments: Array[Segment] = []
 var next_move: Direction
 var move_sequence: Array[Direction] = []
-var is_dead: bool = false
+var stop_moving: bool = false
 
 
-signal dead
+signal game_lost
+signal game_won
 
 
 func _ready() -> void:
@@ -110,8 +111,8 @@ func _input(event: InputEvent) -> void:
 	
 
 func move() -> void:
-	# Do nothing if we're dead
-	if is_dead:
+	# Do nothing if the game is over
+	if stop_moving:
 		return
 
 	if ai_controlled and not move_sequence.is_empty():
@@ -156,6 +157,9 @@ func move() -> void:
 	# Did we just lose?
 	if not valid_position(head.pos):
 		game_over()
+	# Did we just WIN!?
+	elif length == board.grid_size.x * board.grid_size.y:
+		win()
 
 
 func valid_position(pos: Vector2i) -> bool:
@@ -214,5 +218,9 @@ func body_texture_mapping(in_dir: Direction, out_dir: Direction) -> Texture2D:
 
 
 func game_over():
-	is_dead = true
-	dead.emit()
+	stop_moving = true
+	game_lost.emit()
+
+func win():
+	stop_moving = true
+	game_won.emit()
