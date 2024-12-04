@@ -34,6 +34,7 @@ body_dl = ExtResource("14_6awcp")
 body_dr = ExtResource("15_06ofn")
 
 [node name="Head" type="Sprite2D" parent="."]
+z_index = 1
 centered = false
 
 [node name="Tail" type="Sprite2D" parent="."]

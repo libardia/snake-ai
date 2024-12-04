@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://boobg3k83n77o"]
+[gd_scene load_steps=7 format=3 uid="uid://boobg3k83n77o"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_uc5lc"]
 [ext_resource type="Script" path="res://board.gd" id="2_0iudr"]
 [ext_resource type="PackedScene" uid="uid://yy7judbcsrua" path="res://snake.tscn" id="4_yiy40"]
+[ext_resource type="Script" path="res://restart.gd" id="5_4qwik"]
+[ext_resource type="Script" path="res://ui.gd" id="5_577ec"]
 [ext_resource type="Texture2D" uid="uid://dd3y743eism2w" path="res://img/apple.png" id="18_4r17e"]
 
 [node name="main" type="Node2D"]
@@ -26,3 +28,31 @@ centered = false
 
 [node name="Snake" parent="Board/GridOrigin" node_paths=PackedStringArray("board") instance=ExtResource("4_yiy40")]
 board = NodePath("../..")
+
+[node name="UI" type="VBoxContainer" parent="."]
+visible = false
+z_index = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/separation = 50
+alignment = 1
+script = ExtResource("5_577ec")
+
+[node name="GameResult" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 70
+text = "<result>"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+script = ExtResource("5_4qwik")
+
+[connection signal="dead" from="Board/GridOrigin/Snake" to="UI" method="_lose"]

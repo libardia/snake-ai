@@ -52,6 +52,10 @@ var length: int = 2
 var body_segments: Array[Segment] = []
 var next_move: Direction
 var move_sequence: Array[Direction] = []
+var is_dead: bool = false
+
+
+signal dead
 
 
 func _ready() -> void:
@@ -106,19 +110,23 @@ func _input(event: InputEvent) -> void:
 	
 
 func move() -> void:
+	# Do nothing if we're dead
+	if is_dead:
+		return
+
+	if ai_controlled and not move_sequence.is_empty():
+		next_move = move_sequence.pop_front()
+
 	# Save some of the head's data before moving
 	var old_head_pos = head.pos
 	var old_head_in = head.in_dir
-	
-	if ai_controlled and not move_sequence.is_empty():
-		next_move = move_sequence.pop_front()
+
+	# Move head
 	head.in_dir = direction_opposite(next_move)
 	head.out_dir = next_move
+	head.pos += direction_to_vector(next_move)
 
-	# Move head, then check if we've hit the apple
-	head.pos += direction_to_vector(head.out_dir)
-
-	if head.pos == board.apple_grid_pos and board.apple != null:
+	if (head.pos == board.apple_grid_pos or Input.is_action_pressed('expand')) and board.apple != null:
 		# Extend and then don't move anything else
 		# Make a new body segment
 		var new_seg: Segment = make_new_segment()
@@ -142,9 +150,25 @@ func move() -> void:
 			last.in_dir = old_head_in
 			last.out_dir = direction_opposite(head.in_dir)
 			body_segments.push_front(last)
-
-
+	
 	update_sprites()
+
+	# Did we just lose?
+	if not valid_position(head.pos):
+		game_over()
+
+
+func valid_position(pos: Vector2i) -> bool:
+	var x_invalid = pos.x < 0 or pos.x >= board.grid_size.x
+	var y_invalid = pos.y < 0 or pos.y >= board.grid_size.y
+	if x_invalid or y_invalid:
+		return false
+	if pos == tail.pos:
+		return false
+	for seg in body_segments:
+		if pos == seg.pos:
+			return false
+	return true
 
 
 func make_new_segment() -> Segment:
@@ -187,3 +211,8 @@ func body_texture_mapping(in_dir: Direction, out_dir: Direction) -> Texture2D:
 		
 		assert(false, 'Invalid direction combination for body segment')
 		return null
+
+
+func game_over():
+	is_dead = true
+	dead.emit()
