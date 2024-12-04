@@ -40,7 +40,7 @@ centered = false
 centered = false
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.01
+wait_time = 0.5
 autostart = true
 
 [connection signal="timeout" from="MoveTimer" to="." method="move"]
