@@ -2,13 +2,11 @@ class_name Snake
 extends Node2D
 
 
-enum Direction {UP, DOWN, LEFT, RIGHT}
-
 class Segment:
 	var spr: Sprite2D
 	var pos: Vector2i
-	var in_dir: Direction
-	var out_dir: Direction
+	var in_dir: int
+	var out_dir: int
 
 @export_group('Properties')
 @export var ai_controlled: bool = false
@@ -47,11 +45,11 @@ class Segment:
 @onready var texture_size: int = head_up.get_size().x as int
 @onready var head: Segment = Segment.new()
 @onready var tail: Segment = Segment.new()
-var curr_direction: Direction = Direction.RIGHT
+var curr_direction: int = Direction.RIGHT
 var length: int = 2
 var body_segments: Array[Segment] = []
-var next_move: Direction
-var move_sequence: Array[Direction] = []
+var next_move: int
+var move_sequence: Array[int] = []
 var stop_moving: bool = false
 
 
@@ -72,7 +70,7 @@ func _ready() -> void:
 	update_sprites()
 
 
-func direction_to_vector(dir: Direction) -> Vector2i:
+func direction_to_vector(dir: int) -> Vector2i:
 	match dir:
 		Direction.UP:
 			return Vector2i(0, -1)
@@ -86,7 +84,7 @@ func direction_to_vector(dir: Direction) -> Vector2i:
 			return Vector2i.ZERO
 
 
-func direction_opposite(dir: Direction) -> Direction:
+func direction_opposite(dir: int) -> int:
 	match dir:
 		Direction.UP:
 			return Direction.DOWN
@@ -193,7 +191,7 @@ func update_sprites() -> void:
 		seg.spr.position = seg.pos * texture_size
 
 
-func body_texture_mapping(in_dir: Direction, out_dir: Direction) -> Texture2D:
+func body_texture_mapping(in_dir: int, out_dir: int) -> Texture2D:
 	if in_dir == direction_opposite(out_dir):
 		if in_dir in [Direction.UP, Direction.DOWN]:
 			return body_vertical

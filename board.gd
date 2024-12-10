@@ -2,7 +2,7 @@ class_name Board
 extends Node2D
 
 
-@export var grid_size: Vector2i = Vector2(27, 15)
+@export var grid_size: Vector2i = Vector2(26, 15)
 
 @onready var camera: Camera2D = $'../Camera'
 @onready var border: Line2D = $Border
@@ -17,6 +17,12 @@ var apple_grid_pos: Vector2i
 
 
 func _ready() -> void:
+	# Make sure the grid dimensions are valid
+	print(grid_size)
+	if grid_size.x % 2 == 1 and grid_size.y % 2 == 1:
+		OS.alert("Grid dimensions %s are invalid; at least one dimension must be even." % grid_size)
+		OS.kill(OS.get_process_id())
+
 	# Get the total size of the whole grid and border
 	board_size = (Vector2.ONE * border.width * 2) + (Vector2(grid_size) * snake.texture_size)
 
